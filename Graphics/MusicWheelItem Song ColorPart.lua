@@ -15,6 +15,6 @@ return Def.ActorFrame{
 	};
 		
 	Def.Quad{
-		OnCommand=cmd(y,2.5;setsize,295,35;diffusealpha,0.5;blend,Blend.Subtract)
+		OnCommand=cmd(y,2.5;setsize,295,35;diffusealpha,0.5;diffuse,Color.Black)
 	};
 }
