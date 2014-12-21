@@ -72,9 +72,9 @@ t[#t+1] = Def.ActorFrame{
 		CurrentSongChangedMessageCommand=function(self)
 			local song = GAMESTATE:GetCurrentSong()
 			if song then
-				self:bounceend(0.15):zoomx(1):sleep(0.2)
+				self:stoptweening():bounceend(0.15):zoomx(1)
 			else
-				self:bouncebegin(0.15):zoomx(0):sleep(0.2)
+				self:stoptweening():bouncebegin(0.15):zoomx(0):sleep(0.2)
 			end
 		end;
 		Name="StepsDisplayListRow";
