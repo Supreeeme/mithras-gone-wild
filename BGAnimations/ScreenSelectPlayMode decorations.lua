@@ -26,22 +26,52 @@ return Def.ActorFrame{
 	--yay for rawr
 	LoadActor("RAWR")..{
 		InitCommand=cmd(Center;zoom,0.25);
-		OnCommand=cmd(decelerate,0.7;xy,150,SCREEN_TOP+60;rotationz,720;spin);
+		OnCommand=function(self)
+			self:decelerate(0.7)
+			if curAspect==AspectRatios.SixteenNine then
+				self:xy(150,SCREEN_TOP+60):rotationz(720):spin();
+			elseif curAspect==AspectRatios.SixteenTen then
+				self:xy(100,SCREEN_TOP+60):rotationz(720):spin()
+			else
+				lua.ReportScriptError("Current aspect ratio not supported, please report")
+			end
+		end,
 		OffCommand=cmd(decelerate,0.7;zoom,0;rotationz,-720)
 	};
 	LoadActor("RAWR")..{
 		InitCommand=cmd(Center;zoom,0.25);
-		OnCommand=cmd(decelerate,0.7;xy,750,SCREEN_TOP+60;rotationz,720;spin);
+		OnCommand=function(self)
+			self:decelerate(0.7)
+			if curAspect==AspectRatios.SixteenNine then
+				self:xy(750,SCREEN_TOP+60):rotationz(720):spin()
+			elseif curAspect==AspectRatios.SixteenTen then
+				self:xy(700,SCREEN_TOP+60):rotationz(720):spin()
+			end
+		end,
 		OffCommand=cmd(decelerate,0.7;zoom,0;rotationz,-720)
 	};
 	LoadActor("RAWR")..{
 		InitCommand=cmd(Center;zoom,0.25);
-		OnCommand=cmd(decelerate,0.7;xy,150,SCREEN_BOTTOM-50;rotationz,720;spin);
+		OnCommand=function(self)
+			self:decelerate(0.7)
+			if curAspect==AspectRatios.SixteenNine then
+				self:xy(150,SCREEN_BOTTOM-50):rotationz(720):spin();
+			elseif curAspect==AspectRatios.SixteenTen then
+				self:xy(100,SCREEN_BOTTOM-50):rotationz(720):spin();
+			end
+		end,
 		OffCommand=cmd(decelerate,0.7;zoom,0;rotationz,-720)
 	};
 	LoadActor("RAWR")..{
 		InitCommand=cmd(Center;zoom,0.25);
-		OnCommand=cmd(decelerate,0.7;xy,750,SCREEN_BOTTOM-50;rotationz,720;spin);
+		OnCommand=function(self)
+			self:decelerate(0.7)
+			if curAspect==AspectRatios.SixteenNine then
+				self:xy(750,SCREEN_BOTTOM-50):rotationz(720):spin()
+			elseif curAspect==AspectRatios.SixteenTen then
+				self:xy(700,SCREEN_BOTTOM-50):rotationz(720):spin()
+			end
+		end,
 		OffCommand=cmd(decelerate,0.7;zoom,0;rotationz,-720)
 	};
 }

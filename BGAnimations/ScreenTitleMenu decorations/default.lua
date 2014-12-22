@@ -22,7 +22,17 @@ return Def.ActorFrame{
 
 	--songs & groups
 	Def.ActorFrame{
-		OnCommand=cmd(y,100);
+		OnCommand=function(self)
+			self:y(100)
+		local curAspect = round(GetScreenAspectRatio(),5);
+		if curAspect == AspectRatios.SixteenNine then
+			return
+		elseif curAspect == AspectRatios.SixteenTen then
+			self:x(50)
+		else
+			lua.ReportScriptError("Current aspect ratio not supported; please report to the github bug reporter")
+		end
+		end,
 		Def.BitmapText{
 			Font="_blaster",
 			Text="Song Info",

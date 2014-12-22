@@ -4,13 +4,14 @@ local t = Def.ActorFrame{
 		Name="headerline";
 		OnCommand=cmd(xy,SCREEN_CENTER_X,29;SetWidth,SCREEN_WIDTH);
 		OffCommand=cmd(bouncebegin,0.15;zoomx,0);
+		StyleChangeCommand=cmd(SetHeight,50);
 	};
 
 	Def.BitmapText{
 		Name="songname";
 		Font="_fishfingers normal",
 		Text="",
-		OnCommand=cmd(xy,200,41;maxwidth,295);
+		OnCommand=function(self) self:xy(200,41):maxwidth(295) end,
 		OffCommand=cmd(bouncebegin,0.15;zoomy,0);
 		CurrentSongChangedMessageCommand=function(self)
 			if GAMESTATE:GetCurrentSong() then
@@ -23,7 +24,15 @@ local t = Def.ActorFrame{
 
 	Def.Quad{
 		Name="horizline";
-		OnCommand=cmd(xy,SCREEN_CENTER_X - 50,SCREEN_CENTER_Y;SetHeight,SCREEN_HEIGHT);
+		OnCommand=function(self)
+			if curAspect == AspectRatios.SixteenNine then
+				self:xy(SCREEN_CENTER_X - 35,SCREEN_CENTER_Y):SetHeight(SCREEN_HEIGHT)
+			elseif curAspect == AspectRatios.SixteenTen then
+				self:xy(SCREEN_CENTER_X - 25,SCREEN_CENTER_Y):SetHeight(SCREEN_HEIGHT)
+			else
+				lua.ReportScriptError("Current aspect ratio not supported yet, please report")
+			end
+		end,
 		OffCommand=cmd(bouncebegin,0.15;zoomy,0)
 	};
 
@@ -114,7 +123,7 @@ local transform = function(self,offsetFromCenter,itemIndex,numitems)
 	self:y( offsetFromCenter * 44 );
 end
 t[#t+1]=Def.CourseContentsList {
-	InitCommand=cmd(xy,200,SCREEN_CENTER_Y+10);
+	InitCommand=cmd(xy,195,SCREEN_CENTER_Y+10);
 	OffCommand=cmd(bouncebegin,0.15;zoomy,0);
 	MaxSongs = 7;
     	NumItemsToDraw = 8;
@@ -173,7 +182,7 @@ t[#t+1]=Def.CourseContentsList {
 };
 t[#t+1]=Def.Quad{
 	Name="Hider",
-	InitCommand=cmd(visible,GAMESTATE:IsCourseMode();setsize,400,90;xy,160,SCREEN_CENTER_Y-60;diffuse,color("#000033"));
+	InitCommand=cmd(visible,GAMESTATE:IsCourseMode();setsize,390,90;xy,160,SCREEN_CENTER_Y-60;diffuse,color("#000033"));
 	ShowPressStartForOptionsCommand=cmd(visible,false)
 };
 
