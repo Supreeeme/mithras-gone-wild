@@ -7,7 +7,7 @@ local mithrasPrefs={
 		Values = { false, true }
 	},
 	AutoSetStyle={
-		Default = false,
+		Default = true,
 		Choices = { OptionNameString('Off'), OptionNameString('On') },
 		Values = { false, true }
 	},

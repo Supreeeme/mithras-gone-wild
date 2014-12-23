@@ -11,6 +11,7 @@ return Def.ActorFrame{
 		Text="Which game mode would you like?",
 		InitCommand=cmd(diffusealpha,0;xy,SCREEN_CENTER_X,SCREEN_TOP+140);
 		OnCommand=cmd(sleep,0.8;diffusealpha,1;);
+		OffCommand=cmd(bouncebegin,0.3;zoomx,0)
 	},
 	--yay, moar lines
 	Def.Quad{
