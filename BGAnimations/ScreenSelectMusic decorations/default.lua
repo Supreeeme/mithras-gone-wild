@@ -97,7 +97,7 @@ t[#t+1] = Def.ActorFrame{
 
 		};
 		CursorP2= Def.ActorFrame{
-			InitCommand=cmd(x,100;diffuse,PlayerColor(PLAYER_2);player,PLAYER_2);
+			InitCommand=cmd(x,-125;diffuse,PlayerColor(PLAYER_2);player,PLAYER_2);
 			PlayerJoinedMessageCommand=function(self, params)
 					if params.Player == PLAYER_2 then
 						self:visible(true);
@@ -180,15 +180,21 @@ t[#t+1]=Def.CourseContentsList {
 		}; 
 	};
 };
-t[#t+1]=Def.Quad{
+t[#t+1]=Def.ActorFrame{
 	Name="Hider",
-	InitCommand=cmd(visible,GAMESTATE:IsCourseMode();setsize,390,90;xy,160,SCREEN_CENTER_Y-60;diffuse,color("#000033"));
-	ShowPressStartForOptionsCommand=cmd(visible,false)
+	InitCommand=cmd(visible,GAMESTATE:IsCourseMode();diffuse,color("#000033"));
+	ShowPressStartForOptionsCommand=cmd(visible,false);
+	Def.Quad{
+		InitCommand=cmd(xy,160,SCREEN_CENTER_Y-60;setsize,390,90);
+	};
+	Def.Quad{
+		InitCommand=cmd(xy,160,SCREEN_CENTER_Y+210;setsize,390,90)
+	};
 };
 
 --BPM Display
 t[#t+1] = Def.ActorFrame{
-		InitCommand=cmd(xy,150,SCREEN_CENTER_Y-60);
+		InitCommand=cmd(xy,100,SCREEN_CENTER_Y-60);
 		OffCommand=cmd(bouncebegin,0.15;zoomy,0);
 		Def.BPMDisplay{
 			Name="BPMDisplay";
@@ -204,5 +210,29 @@ t[#t+1] = Def.ActorFrame{
 			OnCommand=cmd(x,50);
 		};
 };
+
+--Song time
+t[#t+1] = Def.BitmapText{
+		Name="songtime";
+		Font="_fishfingers normal",
+		Text="test",
+		OnCommand=cmd(xy,300,SCREEN_CENTER_Y-60;maxwidth,50);
+		SetCommand=function(self)
+			local song = GAMESTATE:GetCurrentSong()
+			if song then
+				self:settext( SecondsToMSS( song:MusicLengthSeconds() ) )
+			elseif GAMESTATE:GetCurrentCourse() then
+				--jesus so many arguments
+				local master_player = GAMESTATE:GetMasterPlayerNumber()
+				local trail = GAMESTATE:GetCurrentTrail(master_player)
+				self:settext( SecondsToMSS( TrailUtil.GetTotalSeconds(trail) ) )
+			else
+				self:settext("fail")
+			end
+		end,
+		CurrentSongChangedMessageCommand=cmd(playcommand,'Set');
+		CurrentTrailP1ChangedMessageCommand=cmd(playcommand,'Set');
+		OffCommand=cmd(bouncebegin,0.15;zoomy,0)
+	};
 --Pane Display...which I'll do later because I'm too lazy	
 return t
