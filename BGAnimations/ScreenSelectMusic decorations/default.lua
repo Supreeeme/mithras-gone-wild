@@ -227,7 +227,7 @@ t[#t+1] = Def.BitmapText{
 				local trail = GAMESTATE:GetCurrentTrail(master_player)
 				self:settext( SecondsToMSS( TrailUtil.GetTotalSeconds(trail) ) )
 			else
-				self:settext("fail")
+				self:settext("")
 			end
 		end,
 		CurrentSongChangedMessageCommand=cmd(playcommand,'Set');
