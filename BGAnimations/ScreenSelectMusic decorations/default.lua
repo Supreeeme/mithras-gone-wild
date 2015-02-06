@@ -234,5 +234,5 @@ t[#t+1] = Def.BitmapText{
 		CurrentTrailP1ChangedMessageCommand=cmd(playcommand,'Set');
 		OffCommand=cmd(bouncebegin,0.15;zoomy,0)
 	};
---Pane Display...which I'll do later because I'm too lazy	
+	
 return t

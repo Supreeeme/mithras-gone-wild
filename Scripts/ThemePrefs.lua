@@ -11,7 +11,7 @@ local mithrasPrefs={
 		Choices = { OptionNameString('Off'), OptionNameString('On') },
 		Values = { false, true }
 	},
-	ShowFlashyCombo={
+	FlashyCombo={
 		Default = true,
 		Choices = { OptionNameString('Off'), OptionNameString('On') },
 		Values = { false, true }

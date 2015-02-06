@@ -14,11 +14,11 @@ return Def.ActorFrame{
 	},
 	--lines are rad
 	Def.Quad{
-		OnCommand=cmd(xy,SCREEN_RIGHT+1000,SCREEN_TOP+90;setsize,SCREEN_WIDTH,1;decelerate,0.7;x,SCREEN_CENTER_X);
+		OnCommand=cmd(xy,SCREEN_RIGHT+1000,SCREEN_TOP+90;setsize,SCREEN_WIDTH,1.2;decelerate,0.7;x,SCREEN_CENTER_X);
 		OffCommand=cmd(decelerate,0.5;x,SCREEN_LEFT-1000)
 	},
 	Def.Quad{
-		OnCommand=cmd(xy,SCREEN_LEFT-1000,SCREEN_BOTTOM-150;setsize,SCREEN_WIDTH,1;decelerate,0.7;x,SCREEN_CENTER_X);
+		OnCommand=cmd(xy,SCREEN_LEFT-1000,SCREEN_BOTTOM-150;setsize,SCREEN_WIDTH,1.2;decelerate,0.7;x,SCREEN_CENTER_X);
 		OffCommand=cmd(decelerate,0.5;x,SCREEN_RIGHT+1000)
 	};
 	

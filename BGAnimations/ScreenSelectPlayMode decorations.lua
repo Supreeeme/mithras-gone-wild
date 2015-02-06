@@ -15,12 +15,12 @@ return Def.ActorFrame{
 	},
 	--yay, moar lines
 	Def.Quad{
-		InitCommand=cmd(xy,SCREEN_CENTER_X,200;setsize,SCREEN_WIDTH,1);
+		InitCommand=cmd(xy,SCREEN_CENTER_X,200;setsize,SCREEN_WIDTH,1.2);
 		OnCommand=cmd(decelerate,0.7;y,SCREEN_TOP+110);
 		OffCommand=cmd(decelerate,0.7;x,SCREEN_LEFT-1000)
 	},
 	Def.Quad{
-		InitCommand=cmd(xy,SCREEN_CENTER_X,282;setsize,SCREEN_WIDTH,1);
+		InitCommand=cmd(xy,SCREEN_CENTER_X,282;setsize,SCREEN_WIDTH,1.2);
 		OnCommand=cmd(decelerate,0.7;y,SCREEN_BOTTOM-150);
 		OffCommand=cmd(decelerate,0.7;x,SCREEN_RIGHT+1000)
 	};
